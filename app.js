@@ -1,13 +1,25 @@
-const http = require('http');
+'use strict'
+const express = require('express')
 
-const hostname = '127.0.0.1';
-const port = 3000;
+var app = express()
+const port = process.env.PORT || 8080;
 
-const server = http.createServer( (request, response) => {
-    response.statusCode = 200;
-    response.setHeader('Content-Type', 'text/plain');
+
+app.use('/static', express.static(__dirname + '/public'));
+
+
+app.get('/', function(req, res){
+	// res.render('index');
+	res.sendFile(__dirname + '/public/index.html');
 });
 
-server.listen(port, hostname, () => {
-    console.log('Listening server at ' + hostname + ':' + port);
-});
+app.get('/api', (req, res) => {
+    res.json({ fname:'Steve', lname:'Song'});
+})
+
+
+console.log('server start!')
+app.listen(port, ()=>{
+    console.log('server is running... port:' + port);
+})
+
