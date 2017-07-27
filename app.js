@@ -38,6 +38,38 @@ app.get('/users/:userType/:userId/:messageType', function(req, res){
 	}});
 });
 
+
+app.get('/users/:userType/:userId/:messageType', function(req, res){
+	var userType = req.params.userType;
+	var userId = parseInt(req.params.userId);
+	var messageType = req.params.messageType;
+
+    res.status(200);
+	var path = req.path;
+	res.locals.path = path;
+	res.json( { devInfo: { 
+		user_type: userType, 
+		user_id: userId,
+		message_type: messageType,
+		url: req.originalUrl
+	}});
+});
+
+app.get('/v1/users/retrieve/', (req, res) => {
+    var from;
+    if(req.query.hasOwnProperty('from') ){
+        from = req.query.from;
+    } else {
+        from = "no parameter"
+    }
+
+    res.json({
+        parameter : req.query,
+        from : from
+    })
+})
+
+
 app.post('/v1/users/add/:userId', (req, res) => {
     res.json({ message: 'success',
         user_id:req.params.userId
