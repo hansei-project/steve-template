@@ -38,8 +38,11 @@ app.get('/users/:userType/:userId/:messageType', function(req, res){
 	}});
 });
 
-
-
+app.post('/v1/users/add/:userId', (req, res) => {
+    res.json({ message: 'success',
+        user_id:req.params.userId
+    })
+})
 
 
 console.log('server start!')
