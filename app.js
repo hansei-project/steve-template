@@ -1,5 +1,5 @@
 'use strict'
-const express = require('express')
+const express = require('')
 
 var app = express()
 const port = process.env.PORT || 8080;
