@@ -6,7 +6,8 @@ var app = express()
 const port = process.env.PORT || 8080;
 
 var bodyParser = require('body-parser');
-
+var b = 0;
+var c = 0;
 
 //Express middleware
 app.use(bodyParser.json()); // for parsing application/json
